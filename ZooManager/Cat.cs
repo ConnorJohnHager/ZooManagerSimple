@@ -2,7 +2,7 @@
 
 namespace ZooManager
 {
-    public class Cat : Animal
+    public class Cat : Animal, IPredator, IPrey
     {
         public Cat(string name)
         {
@@ -21,13 +21,13 @@ namespace ZooManager
 
         public void TaskProcess() // Priority is to flee over hunt
         {
-            TaskCheck = Flee("raptor");
+            TaskCheck = (this as IPrey).Flee(this, location.x, location.y, "raptor");
             if (TaskCheck == false)
             {
-                TaskCheck = Hunt("mouse");
+                TaskCheck = (this as IPredator).Hunt(this, location.x, location.y, "mouse");
                 if (TaskCheck == false)
                 {
-                    TaskCheck = Hunt("chick");
+                    TaskCheck = (this as IPredator).Hunt(this, location.x, location.y, "chick");
                 }
             }
             TurnCheck = true;

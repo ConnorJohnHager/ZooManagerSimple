@@ -1,7 +1,7 @@
 ﻿using System;
 namespace ZooManager
 {
-    public class Mouse : Animal
+    public class Mouse : Animal, IPrey
     {
         public Mouse(string name)
         {
@@ -23,10 +23,10 @@ namespace ZooManager
 
         public void TaskProcess()
         {
-            TaskCheck = Flee("raptor");
+            TaskCheck = (this as IPrey).Flee(this, location.x, location.y, "raptor");
             if (TaskCheck == false)
             {
-                TaskCheck = Flee("cat");
+                TaskCheck = (this as IPrey).Flee(this, location.x, location.y, "cat");
             }
             TurnCheck = true;
         }
