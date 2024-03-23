@@ -7,7 +7,7 @@ namespace ZooManager
         {
             if (Game.Seek(x, y, Direction.up, "null", distance))
             {
-                if (Game.Retreat(bird, Direction.right, distance)) return true;
+                if (Game.Retreat(bird, Direction.up, distance)) return true;
             }
             else if (Game.Seek(x, y, Direction.down, "null", distance))
             {
