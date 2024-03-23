@@ -20,7 +20,7 @@ namespace ZooManager
 
         public void TaskProcess()
         {
-            TaskCheck = (this as IPrey).Flee(this, location.x, location.y, "cat");
+            TaskCheck = (this as IPrey).Flee(this, location.x, location.y, "cat", 1);
             TurnCheck = true;
         }
     }

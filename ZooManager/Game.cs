@@ -177,6 +177,45 @@ namespace ZooManager
             return false;
         }
 
+        static public int Move(Animal animal, Direction d, int distance)
+        {
+            int movedDistance = 0;
+            int x = animal.location.x;
+            int y = animal.location.y;
+
+            for (int i = 0; i < distance; i++)
+            {
+                switch (d)
+                {
+                    case Direction.up:
+                        y--;
+                        break;
+                    case Direction.down:
+                        y++;
+                        break;
+                    case Direction.left:
+                        x--;
+                        break;
+                    case Direction.right:
+                        x++;
+                        break;
+                }
+                if (y < 0 || x < 0 || y > numCellsY - 1 || x > numCellsX - 1) break;
+                if (animalZones[y][x].occupant == null)
+                {
+                    animalZones[animal.location.y][animal.location.x].occupant = null;
+                    animalZones[y][x].occupant = animal;
+                    movedDistance++;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            return movedDistance;
+        }
+
+
         static public bool Attack(Animal attacker, Direction d)
         {
             Console.WriteLine($"{attacker.name} is attacking {d.ToString()}");
