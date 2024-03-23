@@ -147,7 +147,7 @@ namespace ZooManager
                         x = x + distance;
                         break;
                 }
-                if (y < 0 || x < 0 || y > numCellsY - 1 || x > numCellsX - 1) return false;
+                if (y < 0 || x < 0 || y > numCellsY - distance || x > numCellsX - distance) return false;
                 if (animalZones[y][x].occupant == null) return true;
             }
             else
@@ -167,7 +167,7 @@ namespace ZooManager
                         x = x + distance;
                         break;
                 }
-                if (y < 0 || x < 0 || y > numCellsY - 1 || x > numCellsX - 1) return false;
+                if (y < 0 || x < 0 || y > numCellsY - distance || x > numCellsX - distance) return false;
                 if (animalZones[y][x].occupant == null) return false;
                 if (animalZones[y][x].occupant.species == target)
                 {
@@ -269,7 +269,7 @@ namespace ZooManager
             switch (d)
             {
                 case Direction.up:
-                    if (y > 0 && animalZones[y - distance][x].occupant == null)
+                    if (y >= 0 && animalZones[y - distance][x].occupant == null)
                     {
                         animalZones[y - distance][x].occupant = runner;
                         animalZones[y][x].occupant = null;
@@ -277,7 +277,7 @@ namespace ZooManager
                     }
                     return false; // retreat was not successful
                 case Direction.down:
-                    if (y < numCellsY - distance && animalZones[y + distance][x].occupant == null)
+                    if (y <= numCellsY - distance && animalZones[y + distance][x].occupant == null)
                     {
                         animalZones[y + distance][x].occupant = runner;
                         animalZones[y][x].occupant = null;
@@ -285,7 +285,7 @@ namespace ZooManager
                     }
                     return false;
                 case Direction.left:
-                    if (x > 0 && animalZones[y][x - distance].occupant == null)
+                    if (x >= 0 && animalZones[y][x - distance].occupant == null)
                     {
                         animalZones[y][x - distance].occupant = runner;
                         animalZones[y][x].occupant = null;
@@ -293,7 +293,7 @@ namespace ZooManager
                     }
                     return false;
                 case Direction.right:
-                    if (x < numCellsX - distance && animalZones[y][x + distance].occupant == null)
+                    if (x <= numCellsX - distance && animalZones[y][x + distance].occupant == null)
                     {
                         animalZones[y][x + distance].occupant = runner;
                         animalZones[y][x].occupant = null;
